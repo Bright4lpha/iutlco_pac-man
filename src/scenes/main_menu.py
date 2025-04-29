@@ -18,7 +18,7 @@ class Button():
         self.is_selected = is_selected
         self.on_click = on_click
 
-        self.font = pygame.freetype.Font(src.constants.FONT, 32)
+        self.font = pygame.freetype.Font(const.FONT, 32)
         self.label = button_label
         self.button_label = self.font.render(button_label, True, (255,0,0))
         self.button_rect = self.button_label[0].get_rect()
@@ -26,10 +26,10 @@ class Button():
 
 class MainMenu(RenderableInterface):
     def __init__(self):
-        self.font = pygame.freetype.Font(src.constants.FONT, 32)
-        self.title = self.font.render(src.constants.SCREEN_TITLE,src.constants.BLACK)
+        self.font = pygame.freetype.Font(const.FONT, 32)
+        self.title = self.font.render(const.SCREEN_TITLE,const.BLACK)
         self.title_rect = self.title[0].get_rect()
-        self.title_rect.center = (src.constants.SCREEN_WIDTH // 2, src.constants.SCREEN_HEIGHT // 6)
+        self.title_rect.center = (const.SCREEN_WIDTH // 2, const.SCREEN_HEIGHT // 6)
 
         self.buttons: List[Button] = [
             Button(565,250,150,50,"Play",True,self.play),
@@ -96,9 +96,9 @@ class MainMenu(RenderableInterface):
             #pygame.draw.rect(screen,(255,255,255),button[1].button_rect)
             print(f"button : {button.is_selected}")
             if button.is_selected == True:
-                button.button_label = self.font.render(button.label, src.constants.YELLOW)
+                button.button_label = self.font.render(button.label, const.YELLOW)
             else:
-                button.button_label = self.font.render(button.label, src.constants.WHITE)
+                button.button_label = self.font.render(button.label, const.WHITE)
             screen.blit(button.button_label[0], button.button_rect)
 
 
@@ -107,7 +107,7 @@ if __name__=="__main__":
     pygame.init()
     fps = 60
     fpsClock = pygame.time.Clock()
-    width, height = src.constants.SCREEN_WIDTH, src.constants.SCREEN_HEIGHT
+    width, height = const.SCREEN_WIDTH, const.SCREEN_HEIGHT
     screen = pygame.display.set_mode((width, height))
     pygame.display.set_caption("IUTLCO - Pac-man")
     menu: MainMenu = MainMenu()
