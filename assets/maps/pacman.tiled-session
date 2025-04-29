@@ -1,0 +1,62 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "",
+    "expandedProjectPaths": [
+    ],
+    "file.lastUsedOpenFilter": "Tous les Fichiers (*)",
+    "fileStates": {
+        "Tileset.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 4
+        },
+        "pacman.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 5.5
+        },
+        "pacman_map.tmx": {
+            "scale": 2,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 155.25,
+                "y": 91.75
+            }
+        },
+        "pacman_tiles.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 4
+        },
+        "pacman_tiles2.tsx": {
+            "scaleInDock": 3,
+            "scaleInEditor": 3
+        },
+        "pacman_yellow.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 8
+        }
+    },
+    "last.imagePath": "E:/Mathilde/BUT_INFO/S6/iutlco_pac-man/assets/images",
+    "map.height": 32,
+    "map.lastUsedFormat": "tmx",
+    "map.renderOrder": "3",
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "map.width": 40,
+    "openFiles": [
+    ],
+    "project": "pacman.tiled-project",
+    "recentFiles": [
+        "pacman_yellow.tsx",
+        "pacman_tiles2.tsx",
+        "Tileset.tsx",
+        "pacman_tiles.tsx",
+        "pacman.tsx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
+}
