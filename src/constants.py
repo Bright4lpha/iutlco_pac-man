@@ -1,4 +1,6 @@
 import os
+import pygame
+
 
 SCREEN_WIDTH = 1280
 SCREEN_HEIGHT = 1040
@@ -20,3 +22,9 @@ PACMAN = os.path.join('assets', 'images', 'Pacman.png')
 COIN = os.path.join('assets', 'images', 'Coin.png')
 COIN_TRANSPARENT = os.path.join('assets', 'images', 'CoinTransparent.png')
 MAP_BACkGROUND = os.path.join('assets', 'images', 'Tileset.png')
+
+#color
+WHITE = (255,255,255)
+BLACK = (0,0,0)
+BLACK_2 = (20,20,20)
+YELLOW = (255,255,0)
