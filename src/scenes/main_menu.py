@@ -1,40 +1,42 @@
 from __future__ import annotations
 import sys
 import pygame
-from typing import List, Tuple
-from src.constants import FONT, SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE
+from src import constants as const
+from src.scenes.credits import Credits
+from itertools import count
 from src.utils.renderable_interface import RenderableInterface
+from typing import List
 
 class Button():
-    def __init__(self, x: int, y: int, width: int, height: int, button_label: str, on_click = None):
+    newid = (count(start=0,step=1))
+    def __init__(self, x: int, y: int, width: int, height: int, button_label: str, is_selected: bool, on_click = None):
+        self.index = next(self.newid)
         self.x = x
         self.y = y
         self.width = width
         self.height = height
+        self.is_selected = is_selected
         self.on_click = on_click
 
-        self.font = pygame.font.Font(FONT, 32)
+        self.font = pygame.freetype.Font(src.constants.FONT, 32)
+        self.label = button_label
         self.button_label = self.font.render(button_label, True, (255,0,0))
-        self.button_rect = self.button_label.get_rect()
+        self.button_rect = self.button_label[0].get_rect()
         self.button_rect.center = (self.x + (self.width // 2), self.y + (self.height // 4))
-        #self.button_surf = self.font.render(button_label, True, (255,0,0))
-
-    #def 
 
 class MainMenu(RenderableInterface):
     def __init__(self):
-        self.font = pygame.font.Font(FONT, 32)
-        self.title = self.font.render(SCREEN_TITLE, True, (255,255,255))
-        self.title_rect = self.title.get_rect()
-        self.title_rect.center = (SCREEN_WIDTH // 2, SCREEN_HEIGHT // 6)
+        self.font = pygame.freetype.Font(src.constants.FONT, 32)
+        self.title = self.font.render(src.constants.SCREEN_TITLE,src.constants.BLACK)
+        self.title_rect = self.title[0].get_rect()
+        self.title_rect.center = (src.constants.SCREEN_WIDTH // 2, src.constants.SCREEN_HEIGHT // 6)
 
-        self.buttons: List[Tuple[int,Button,bool]] = [
-            (1,Button(565,250,150,50,"Play",self.play),True),
-            (2,Button(565,360,150,50,"Quit",self.quit),False),
-            (3,Button(565,470,150,50,"Credits", self.credits),False)
+        self.buttons: List[Button] = [
+            Button(565,250,150,50,"Play",True,self.play),
+            Button(565,360,150,50,"Quit",False,self.quit),
+            Button(565,470,150,50,"Credits",False, self.credits)
         ]
-        self.current_button: Tuple[int,Button,bool] = self.buttons[0]
-        #self.current_button.button_label.fill((0,0,255))
+        self.current_button_index: int = 0
 
     def play(self):
         print("play")
@@ -44,21 +46,60 @@ class MainMenu(RenderableInterface):
         pygame.quit()
         sys.exit()
 
-    def credits(self):
+    def credits(self, screen: pygame.Surface):
+        credits_scene = Credits()
+        credits_scene.display_entity_view(screen)
         print("credits")
+        
+    def select_button(self):
+        keys = pygame.key.get_pressed()
+        step = 1
+        if keys[pygame.K_DOWN]:
+            if self.current_button_index == 2:
+                #set the older current button to False
+                self.buttons[self.current_button_index].is_selected = False
+                #update index button
+                self.current_button_index = 0
+                #set the new current button to True
+                self.buttons[self.current_button_index].is_selected = True
+            else:
+                self.buttons[self.current_button_index].is_selected = False
+                
+                self.current_button_index += step
+                self.buttons[self.current_button_index].is_selected = True
+
+            print("Down key is pressed")
+        elif keys[pygame.K_UP]:
+            step = -1
+            if self.current_button_index == 0:
+                #set the older current button to False
+                self.buttons[self.current_button_index].is_selected = False
+                #update index button
+                self.current_button_index = 2
+                #set the new current button to True
+                self.buttons[self.current_button_index].is_selected = True
+            else:
+                self.buttons[self.current_button_index].is_selected = False
+                
+                self.current_button_index += step
+                self.buttons[self.current_button_index].is_selected = True
+            print("Up key is pressed")
+        
 
     def update_entity_view(self):
         return super().update_entity_view()
     
     def display_entity_view(self, screen: pygame.Surface):
-        screen.blit(self.title, self.title_rect)
+        screen.blit(self.title[0], self.title_rect)
         for button in self.buttons :
             #C'est le rectangle pour les boutons
             #pygame.draw.rect(screen,(255,255,255),button[1].button_rect)
-            if button[2] == True:
-                print("in the if")
-                button[1].button_label = pygame.font.render(button[1].button_label, True, (255,255,0))
-            screen.blit(button[1].button_label, button[1].button_rect)
+            print(f"button : {button.is_selected}")
+            if button.is_selected == True:
+                button.button_label = self.font.render(button.label, src.constants.YELLOW)
+            else:
+                button.button_label = self.font.render(button.label, src.constants.WHITE)
+            screen.blit(button.button_label[0], button.button_rect)
 
 
 if __name__=="__main__":
@@ -66,7 +107,7 @@ if __name__=="__main__":
     pygame.init()
     fps = 60
     fpsClock = pygame.time.Clock()
-    width, height = SCREEN_WIDTH, SCREEN_HEIGHT
+    width, height = src.constants.SCREEN_WIDTH, src.constants.SCREEN_HEIGHT
     screen = pygame.display.set_mode((width, height))
     pygame.display.set_caption("IUTLCO - Pac-man")
     menu: MainMenu = MainMenu()
