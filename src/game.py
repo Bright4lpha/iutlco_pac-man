@@ -2,8 +2,8 @@ from __future__ import annotations
 import pygame
 import pygame.freetype
 import sys
-from scenes.main_menu import MainMenu
-import constants as const
+from src.scenes.main_menu import MainMenu
+from src import constants as const
 class Game():
     def __init__(self):
         pygame.init()
