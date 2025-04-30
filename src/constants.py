@@ -1,5 +1,16 @@
 import os
 import pygame
+from enum import Enum
+
+#status
+class GameStatus(Enum):
+    RUNNING = 1
+    MENU = 2
+    
+#menu
+class MenuState(Enum):
+    MAIN_PAGE = 1
+    CREDITS_PAGE = 2
 
 
 SCREEN_WIDTH = 1280

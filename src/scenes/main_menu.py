@@ -30,7 +30,8 @@ class MainMenu(RenderableInterface):
         self.title = self.font.render(const.SCREEN_TITLE,const.BLACK)
         self.title_rect = self.title[0].get_rect()
         self.title_rect.center = (const.SCREEN_WIDTH // 2, const.SCREEN_HEIGHT // 6)
-
+        self.current_page = const.MenuState(1).name
+        
         self.buttons: List[Button] = [
             Button(565,250,150,50,"Play",True,self.play),
             Button(565,360,150,50,"Quit",False,self.quit),
@@ -68,7 +69,6 @@ class MainMenu(RenderableInterface):
                 self.current_button_index += step
                 self.buttons[self.current_button_index].is_selected = True
 
-            print("Down key is pressed")
         elif keys[pygame.K_UP]:
             step = -1
             if self.current_button_index == 0:
@@ -83,7 +83,7 @@ class MainMenu(RenderableInterface):
                 
                 self.current_button_index += step
                 self.buttons[self.current_button_index].is_selected = True
-            print("Up key is pressed")
+
         
 
     def update_entity_view(self):
@@ -92,14 +92,16 @@ class MainMenu(RenderableInterface):
     def display_entity_view(self, screen: pygame.Surface):
         screen.blit(self.title[0], self.title_rect)
         for button in self.buttons :
-            #C'est le rectangle pour les boutons
-            #pygame.draw.rect(screen,(255,255,255),button[1].button_rect)
-            print(f"button : {button.is_selected}")
+
             if button.is_selected == True:
                 button.button_label = self.font.render(button.label, const.YELLOW)
             else:
                 button.button_label = self.font.render(button.label, const.WHITE)
             screen.blit(button.button_label[0], button.button_rect)
+    
+    def clean_entity_view(self, screen: pygame.Surface):
+        screen.fill(const.BLACK_2)
+        
 
 
 if __name__=="__main__":
@@ -115,7 +117,6 @@ if __name__=="__main__":
     while True:
         screen.fill((20, 20, 20))
         menu.display_entity_view(screen)
-        print(menu.current_button)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()

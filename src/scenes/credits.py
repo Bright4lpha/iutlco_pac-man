@@ -6,7 +6,7 @@ from src import constants as const
 class Credits(RenderableInterface):
     def __init__(self):
         self.font = pygame.freetype.Font(const.FONT, 32)
-        self.title = self.font.render(const.SCREEN_TITLE,const.BLACK)
+        self.title = self.font.render("Crédits",const.BLACK)
         self.title_rect = self.title[0].get_rect()
         self.title_rect.center = (const.SCREEN_WIDTH // 2, const.SCREEN_HEIGHT // 6)
         
@@ -15,6 +15,9 @@ class Credits(RenderableInterface):
     
     def update_entity_view(self):
         return super().update_entity_view()
+    
+    def clean_entity_view(self):
+        return super().clean_entity_view()
         
 if __name__=="__main__":
     

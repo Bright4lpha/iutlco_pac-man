@@ -15,3 +15,9 @@ class RenderableInterface(ABC):
             screen (_type_): _description_
         """
         pass
+    
+    @abstractmethod
+    def clean_entity_view(self) -> None :
+        """_summary_
+        """
+        pass

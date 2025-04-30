@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Python: Game",
+        "type": "debugpy",
+        "request": "launch",
+        "program": "${workspaceFolder}/src/main.py",
+        "env": {
+          "PYTHONPATH": "${workspaceFolder}/src"
+        },
+        "console": "integratedTerminal"
+      }
+    ]
+  }
+  
