@@ -1,1 +1,2 @@
 from .renderable_interface import RenderableInterface
+from .sprite_sheet import SpriteSheet

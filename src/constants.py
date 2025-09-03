@@ -32,7 +32,7 @@ YELLOW_GHOST = os.path.join('assets', 'images', 'yellowGhost.png')
 PACMAN = os.path.join('assets', 'images', 'Pacman.png')
 COIN = os.path.join('assets', 'images', 'Coin.png')
 COIN_TRANSPARENT = os.path.join('assets', 'images', 'CoinTransparent.png')
-MAP_BACkGROUND = os.path.join('assets', 'images', 'Tileset.png')
+MAP_BACKGROUND = os.path.join('assets', 'maps', 'pacman_map.tmx')
 
 #color
 WHITE = (255,255,255)
